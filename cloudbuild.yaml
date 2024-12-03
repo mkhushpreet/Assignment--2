@@ -9,4 +9,4 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=gke-cluster'
-logsBucket: 'gs://lambton-assignment-2-app‘
+logsBucket: 'gs://lambton-assignment-2-app'
