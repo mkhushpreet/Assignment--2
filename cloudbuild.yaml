@@ -1,0 +1,12 @@
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'gcr.io/terraform-ci-cd-project-443601/assignment-2:$SHORT_SHA', '.' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/terraform-ci-cd-project-443601/assignment-2:$SHORT_SHA']
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['set', 'image', 'deployment/app’, ‘app=gcr.io/terraform-ci-cd-project-443601/assignment-2:$SHORT_SHA', '--namespace=default’]
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gke-cluster'
+logsBucket: 'gs://lambton-assignment-2-app‘
